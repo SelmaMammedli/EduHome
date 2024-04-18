@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EduHome.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EduHome.DAL
 {
@@ -7,5 +8,6 @@ namespace EduHome.DAL
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
+        public DbSet<Slider> Sliders { get; set; }
     }
 }
