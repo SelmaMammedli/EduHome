@@ -115,5 +115,12 @@ namespace EduHome.Areas.AdminArea.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Detail(int? id)
+        {
+            if (id is null) return NotFound();
+            var existSlider = _context.Sliders.FirstOrDefault(s => s.Id == id);
+            if (existSlider == null) return NotFound();
+            return View(existSlider);
+        }
     }
 }
