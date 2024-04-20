@@ -4,6 +4,7 @@ using EduHome.Models;
 using EduHome.ViewModels;
 using EduHome.ViewModels.Contact;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace EduHome.Controllers
@@ -33,7 +34,22 @@ namespace EduHome.Controllers
         }
         public IActionResult Blog()
         {
-            return View();
+            HomeVM homeVm = new HomeVM();
+            homeVm.Blogs = _context.Blogs.ToList();
+            return View(homeVm);
+        }
+        public IActionResult BlogDetails(int?id)
+        {
+            var blogs=_context.Blogs.AsNoTracking().ToList();
+            if (id == null) return BadRequest();
+            if (blogs.Exists(p => p.Id == id))
+            {
+                return View(blogs.Find(p => p.Id == id));
+            }
+
+            return BadRequest();
+
+            
         }
         public IActionResult Event()
         {
