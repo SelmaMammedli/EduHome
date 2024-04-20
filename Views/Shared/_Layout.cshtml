@@ -45,7 +45,7 @@
                             <ul>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    @*<a>@User.Identity.Name</a>*@
+                                    
                                     <li> <a>@User.Identity.Name</a></li>
                                    
                                     <li><a asp-controller="account" asp-action="logout">Logout</a></li>
