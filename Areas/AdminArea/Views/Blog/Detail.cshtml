@@ -1,0 +1,31 @@
+﻿@model Blog
+<hr />
+<div class="container ">
+    <div class="raw">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <p>
+                        <img width="400" height="200" src="~/img/blog/@Model.ImageUrl" alt="" />
+                    </p>
+                    Blog Title: <b style="color red">@Model.Title</b><hr />
+                    Blog Author: <i>@Model.Author</i><hr />
+                    Blog Create Date: <i>@Model.CreatedDate</i><hr />
+                    Blog Description: <i>@Model.Description</i><hr />
+
+
+                    <a class="btn btn-outline-dark" asp-action="index">Go Back  </a>
+
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

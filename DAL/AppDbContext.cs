@@ -11,5 +11,6 @@ namespace EduHome.DAL
         }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
     }
 }
