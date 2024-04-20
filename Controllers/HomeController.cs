@@ -55,7 +55,7 @@ namespace EduHome.Controllers
             contact.Email = contactVM.Email;
             contact.Subject = contactVM.Subject;
             contact.Message = contactVM.Message;
-            _context.Add(contact);
+            _context.Contacts.Add(contact);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
