@@ -2,6 +2,7 @@
 using EduHome.ViewModels.UserVM;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace EduHome.Controllers
 {
@@ -45,6 +46,32 @@ namespace EduHome.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVM loginVM)
+        {
+            if (!ModelState.IsValid) return View();
+            var user = await _userManager.FindByEmailAsync(loginVM.UserNameOrEmail);
+
+            if (user == null)
+            {
+                user = await _userManager.FindByNameAsync(loginVM.UserNameOrEmail);
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "Email or UserName or Password invalid!");
+                    return View(loginVM);
+                }
+            }
+            SignInResult result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, loginVM.RememberMe, true);
+           
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Email or UserName or Password invalid!");
+                return View(loginVM);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

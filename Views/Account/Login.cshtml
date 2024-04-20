@@ -1,4 +1,5 @@
-﻿       <!-- Banner Area Start -->
+﻿ @model LoginVM     
+ <!-- Banner Area Start -->
 <div class="banner-area-wrapper">
     <div class="banner-area text-center">
         <div class="container">
@@ -27,16 +28,19 @@
                             <span>Please login using account detail bellow.</span>
                         </div>
                         <div class="login-form">
-                            <form action="#" method="post">
-                                <input type="text" name="user-name" placeholder="Username or Email">
-                                <input type="password" name="user-password" placeholder="Password">
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            <form  method="post">
+                                <input asp-for="UserNameOrEmail" placeholder="Username or Email">
+                                <span class="text-danger" asp-validation-for="UserNameOrEmail"></span>
+                                <input asp-for="Password"  placeholder="Password">
+                                <span class="text-danger" asp-validation-for="Password"></span>
                                 <div class="button-box">
                                     <div class="login-toggle-btn">
-                                        <input type="checkbox" id="remember">
-                                        <label for="remember">Remember me</label>
+                                        <input asp-for="RememberMe"  id="remember">
+                                        <label asp-for="RememberMe">Remember me</label>
                                         <a href="#">Forgot Password?</a>
                                     </div>
-                                    <button type="submit" class="default-btn">Submit</button>
+                                    <button type="submit" class="default-btn">Sign in</button>
                                     <div class="text-center mt-4 font-weight-light">
                                         Doesn't have an account? <a asp-action="register" class="text-primary">Register</a>
                                     </div>
