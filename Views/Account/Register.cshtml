@@ -1,0 +1,66 @@
+﻿@model RegisterVM      
+ <!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>Register</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Login start -->
+<div class="login-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div class="login">
+                    <div class="login-form-container">
+                        <div class="login-text">
+                            <h2>Register</h2>
+                            
+                        </div>
+                        <div class="login-form">
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            <form  method="post">
+                                
+                                <input asp-for="UserName"  placeholder="Username">
+                                <span class="text-danger" asp-validation-for="UserName"></span>
+                                <input asp-for="FullName"  placeholder="FullName">
+                                <span class="text-danger" asp-validation-for="FullName"></span>
+                                <input asp-for="Email"  placeholder="Email">
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                                <input asp-for="Password"  placeholder="Password">
+                                <span class="text-danger" asp-validation-for="Password"></span>
+                                <input asp-for="ConfirmPassword"  placeholder="Confirm Password">
+                                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                                <div class="button-box">
+                                    
+                                    <button type="submit" class="default-btn">Sign up</button>
+                                    <div class="text-center mt-4 font-weight-light">
+                                        Do you have already an account? <a asp-action="Login" class="text-primary">Login</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login end -->
+﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
