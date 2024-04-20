@@ -1,6 +1,8 @@
 ﻿
 using EduHome.DAL;
+using EduHome.Models;
 using EduHome.ViewModels;
+using EduHome.ViewModels.Contact;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -41,7 +43,22 @@ namespace EduHome.Controllers
         {
             return View();
         }
-
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Contact(ContactVM contactVM)
+        {
+            Contact contact = new();
+            contact.Name = contactVM.Name;
+            contact.Email = contactVM.Email;
+            contact.Subject = contactVM.Subject;
+            contact.Message = contactVM.Message;
+            _context.Add(contact);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }
