@@ -2,7 +2,7 @@
 
 namespace EduHome.Controllers
 {
-    public class EventController : Controller
+    public class AccountController : Controller
     {
         public IActionResult Index()
         {
