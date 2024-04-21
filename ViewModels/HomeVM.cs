@@ -6,5 +6,7 @@ namespace EduHome.ViewModels
     {
         public IEnumerable<Slider> Sliders { get; set; }
         public IEnumerable<Blog> Blogs { get; set; }
+        public IEnumerable<NoticeBoard> NoticeBoards { get; set; }
+
     }
 }
