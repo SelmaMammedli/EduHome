@@ -33,7 +33,7 @@
                     </div>
                     <div class="blog-content">
                         <div class="blog-top">
-                            <p>By @blog.Author  /  @blog.CreatedDate    </p>
+                                <p>By @blog.Author  /  @blog.CreatedDate.ToString("dd MMMM yyyy")    </p>
                         </div>
                         <div class="blog-bottom">
                                 <h2><a asp-action="BlogDetails" asp-route-id="@blog.Id">@blog.ShortTitle </a></h2>

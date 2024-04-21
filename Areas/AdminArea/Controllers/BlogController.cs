@@ -49,7 +49,7 @@ namespace EduHome.Areas.AdminArea.Controllers
                 ModelState.AddModelError("Photo", "Please choose normal file");
                 return View();
             }
-            var blog = new Blog() { ImageUrl = photos.SaveFile("img/blog"), Title = createVM.Title, Description = createVM.Description,Author=createVM.Author,CreatedDate=createVM.CreatedDate };
+            var blog = new Blog() { ImageUrl = photos.SaveFile("img/blog"), Title = createVM.Title, Description = createVM.Description, Author = createVM.Author, CreatedDate = createVM.CreatedDate };
             _context.Blogs.Add(blog);
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -60,7 +60,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             var existBlog = _context.Blogs.FirstOrDefault(s => s.Id == id);
             if (existBlog == null) return NotFound();
             BlogUpdateVM blogUpdateVM = new BlogUpdateVM();
-            blogUpdateVM = new BlogUpdateVM { ImageUrl = existBlog.ImageUrl, Title = existBlog.Title, Description = existBlog.Description ,Author=existBlog.Author,CreatedDate=existBlog.CreatedDate};
+            blogUpdateVM = new BlogUpdateVM { ImageUrl = existBlog.ImageUrl, Title = existBlog.Title, Description = existBlog.Description, Author = existBlog.Author, CreatedDate = existBlog.CreatedDate };
             return View(blogUpdateVM);
         }
         [HttpPost]

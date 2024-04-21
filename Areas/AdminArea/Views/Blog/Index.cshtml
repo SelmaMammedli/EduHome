@@ -32,7 +32,7 @@
                                         <td>@blog.ShortTitle</td>
                                         <td>@blog.ShortDesc</td>
                                         <td>@blog.Author</td>
-                                        <td>@blog.CreatedDate</td>
+                                        <td>@blog.CreatedDate.ToString("dd MMMM yyyy")</td>
                                         <td>
                                             <a asp-action="update" asp-route-id="@blog.Id" class="btn btn-outline-info"><i class="ni ni-ruler-pencil"></i></a>
                                             <a asp-action="delete" asp-route-id="@blog.Id" class="btn btn-outline-secondary"><i class="ni ni-fat-remove"></i></a>

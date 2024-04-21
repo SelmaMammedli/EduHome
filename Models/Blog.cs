@@ -12,7 +12,7 @@ namespace EduHome.Models
         [NotMapped]
         public string? ShortDesc => Description.Length > 10 ? Description.Substring(0, 10) + "..." : Description;
         public string Author { get; set; }
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string ImageUrl { get; set; }
     }
 }

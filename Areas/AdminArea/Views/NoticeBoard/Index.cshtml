@@ -26,7 +26,7 @@
                                     <tr>
                                         
                                         <td>@board.Description</td>
-                                        <td>@board.Time</td>
+                                        <td>@board.Time.ToString("dd MMMM yyyy")</td>
                                        
                                         <td>
                                             <a asp-action="update" asp-route-id="@board.Id" class="btn btn-outline-info"><i class="ni ni-ruler-pencil"></i></a>
