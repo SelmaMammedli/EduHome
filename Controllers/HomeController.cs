@@ -23,6 +23,7 @@ namespace EduHome.Controllers
             HomeVM homeVm = new HomeVM();
             homeVm.Sliders = _context.Sliders.ToList();
             homeVm.NoticeBoards=_context.NoticesBoards.ToList();
+            homeVm.Boards = _context.Boards.ToList();
             return View(homeVm);
         }
         public IActionResult Courses()
@@ -54,6 +55,7 @@ namespace EduHome.Controllers
 
             
         }
+       
         public IActionResult Event()
         {
             return View();
