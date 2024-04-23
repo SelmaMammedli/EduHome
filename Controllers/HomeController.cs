@@ -24,6 +24,7 @@ namespace EduHome.Controllers
             homeVm.Sliders = _context.Sliders.ToList();
             homeVm.NoticeBoards=_context.NoticesBoards.ToList();
             homeVm.Boards = _context.Boards.ToList();
+            homeVm.WhyYouChoose = _context.WhyYouChooses.FirstOrDefault();
             return View(homeVm);
         }
         public IActionResult Courses()

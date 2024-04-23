@@ -15,5 +15,6 @@ namespace EduHome.DAL
         public DbSet<NoticeBoard> NoticesBoards { get; set;}
         public DbSet<Board> Boards { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<WhyYouChoose>WhyYouChooses { get; set; }
     }
 }
