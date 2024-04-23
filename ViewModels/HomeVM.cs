@@ -8,6 +8,8 @@ namespace EduHome.ViewModels
         public IEnumerable<Blog> Blogs { get; set; }
         public IEnumerable<NoticeBoard> NoticeBoards { get; set; }
         public IEnumerable<Board> Boards { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+
 
     }
 }

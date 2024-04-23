@@ -63,7 +63,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             if (existCategory == null) return NotFound();
             return View(existCategory);
         }
-        public IActionResult DeleteBoard(int? id)
+        public IActionResult DeleteCategory(int? id)
         {
             if (id is null) return NotFound();
             var existCategory = _context.Categories.FirstOrDefault(s => s.Id == id);

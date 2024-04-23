@@ -44,14 +44,22 @@ namespace EduHome.Controllers
         }
         public IActionResult BlogDetails(int?id)
         {
-            var blogs=_context.Blogs.AsNoTracking().ToList();
-            if (id == null) return BadRequest();
-            if (blogs.Exists(p => p.Id == id))
-            {
-                return View(blogs.Find(p => p.Id == id));
-            }
+            BlogVM blogVM= new BlogVM();
+            blogVM.Blogs = _context.Blogs.ToList();
+            blogVM.Blog = _context.Blogs.FirstOrDefault(p => p.Id == id);
+            blogVM.Categories = _context.Categories.ToList();
+            
+            //var blogVM=_context.Blogs.FirstOrDefault(x => x.Id == id);
+            //var blogs=_context.Blogs.AsNoTracking().ToList();
+            //if (id == null) return BadRequest();
+            //if (blogs.Exists(p => p.Id == id))
+            //{
+            //    return View(blogs.Find(p => p.Id == id));
+            //}
 
-            return BadRequest();
+            // return BadRequest();
+            return View(blogVM);
+            
 
             
         }

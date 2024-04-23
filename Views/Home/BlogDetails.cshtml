@@ -1,5 +1,6 @@
 ﻿@using EduHome.Models;
-@model Blog        
+
+@model BlogVM      
 <!-- Banner Area Start -->
 <div class="banner-area-wrapper">
     <div class="banner-area text-center">
@@ -24,13 +25,13 @@
             <div class="col-md-8">
                 <div class="blog-details">
                     <div class="blog-details-img">
-                        <img src="~/img/blog/@Model.ImageUrl" alt="blog-details">
+                        <img src="~/img/blog/@Model.Blog.ImageUrl" alt="blog-details">
                     </div>
                     <div class="blog-details-content">
-                        <h2>@Model.Title </h2>
-                        <h6>By @Model.Author  /  @Model.CreatedDate.ToString("dd MMMM yyyy")  </h6>
-                        <p>@Model.Description  </p>
-                        <p> @Model.Description</p>
+                        <h2>@Model.Blog.Title </h2>
+                        <h6>By @Model.Blog.Author  /  @Model.Blog.CreatedDate.ToString("dd MMMM yyyy")  </h6>
+                        <p>@Model.Blog.Description  </p>
+                        <p> @Model.Blog.Description</p>
                         
                     </div>
                     <div class="reply-area">
@@ -75,12 +76,10 @@
                     <div class="single-blog-widget mb-47">
                         <h3>categories</h3>
                         <ul>
-                            <li><a href="#">CSS Engineering (10)</a></li>
-                            <li><a href="#">Political Science (12)</a></li>
-                            <li><a href="#">Micro Biology (08)</a></li>
-                            <li><a href="#">HTML5 &amp; CSS3 (15)</a></li>
-                            <li><a href="#">Web Design (20)</a></li>
-                            <li><a href="#">PHP (23)</a></li>
+                            @foreach(var category in Model.Categories)
+                            {
+                                <li>@category.Title</li>
+                            }
                         </ul>
                     </div>
                     <div class="single-blog-widget mb-47">
@@ -91,48 +90,26 @@
                     </div>
                     <div class="single-blog-widget mb-47">
                         <h3>latest post</h3>
+                        @foreach(var blog in Model.Blogs)
+                        {
+                            
                         <div class="single-post mb-30">
                             <div class="single-post-img">
                                 <a href="blog-details.html">
-                                    <img src="~/img/post/post1.jpg" alt="post">
+                                        <a asp-action="BlogDetails" asp-route-id="@blog.Id"><img width="100" height="100" src="~/img/blog/@blog.ImageUrl" alt="post"></a>
+                                    
                                     <div class="blog-hover">
                                         <i class="fa fa-link"></i>
                                     </div>
                                 </a>
                             </div>
                             <div class="single-post-content">
-                                <h4><a href="blog-details.html">English Language Course for you</a></h4>
-                                <p>By Alex  /  June 20, 2017</p>
+                                <h4><a >@blog.Title</a></h4>
+                                    <p>By @blog.Author  /  @blog.CreatedDate.ToString("dd MMMM yyyy")</p>
                             </div>
                         </div>
-                        <div class="single-post mb-30">
-                            <div class="single-post-img">
-                                <a href="blog-details.html">
-                                    <img src="~/img/post/post2.jpg" alt="post">
-                                    <div class="blog-hover">
-                                        <i class="fa fa-link"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="single-post-content">
-                                <h4><a href="blog-details.html">Advance Web Design and Develop</a></h4>
-                                <p>By Alex  /  June 20, 2017</p>
-                            </div>
-                        </div>
-                        <div class="single-post">
-                            <div class="single-post-img">
-                                <a href="blog-details.html">
-                                    <img src="~/img/post/post3.jpg" alt="post">
-                                    <div class="blog-hover">
-                                        <i class="fa fa-link"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="single-post-content">
-                                <h4><a href="blog-details.html">English Language Course for you</a></h4>
-                                <p>By Alex  /  June 20, 2017</p>
-                            </div>
-                        </div>
+                        }
+                       
                     </div>
                     <div class="single-blog-widget">
                         <h3>tags</h3>
