@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Contact>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Contact Table</h4>
+                   
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> </th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Settings</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var board in Model)
+                                {
+                                    <tr>
+                                        <td>@board.Id</td>
+                                        <td>@board.Name</td>
+                                        <td>@board.Email</td>
+                                        <td>@board.Subject</td>
+                                        <td>@board.ShortMesg</td>
+
+                                        <td>
+                                            
+                                            <a asp-action="detail" asp-route-id="@board.Id" class="btn btn-outline-behance"><i class="ni ni-settings-gear-65"></i></a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
