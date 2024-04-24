@@ -10,5 +10,6 @@ namespace EduHome.Models
         public string Description { get; set; }
         [NotMapped, MaxLength(100)]
         public string? ShortDesc => Description.Length > 10 ? Description.Substring(0, 10) + "..." : Description;
+        //public List<Courses> Courses { get; set; }
     }
 }

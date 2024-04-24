@@ -16,5 +16,6 @@ namespace EduHome.DAL
         public DbSet<Board> Boards { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<WhyYouChoose>WhyYouChooses { get; set; }
+        public DbSet<Courses> Courses { get; set; }
     }
 }
