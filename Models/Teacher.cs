@@ -1,4 +1,6 @@
-﻿namespace EduHome.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EduHome.Models
 {
     public class Teacher
     {
@@ -9,6 +11,8 @@
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public string AboutMe { get; set; }
+        [NotMapped]
+        public string? ShortAbout => AboutMe.Length > 10 ? AboutMe.Substring(0, 10) + "..." : AboutMe;
         public int Experience { get; set; }
         public string Hobbies { get; set; }
         public string Faculty { get; set; }
