@@ -1,4 +1,4 @@
-﻿@model CourseCreateVM
+﻿@model CourseUpdateVM
 @{
     var categories = (List<Category>)ViewBag.Category;
 }
@@ -7,62 +7,60 @@
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Course Create Form</h4>
-                    <p class="card-description">
-                        <a class="btn btn-outline-dark" asp-action="index">Go Back  </a>
-                    </p>
+                    <h4 class="card-title"> Course Update Form</h4>
+                    
                     <form enctype="multipart/form-data" class="forms-sample" method="post">
                         <div class="form-group">
-                            <label for="exampleInputUsername1">About Course Title</label>
+                            <label asp-for="AboutCourseTitle">About Course Title</label>
                             <input asp-for="AboutCourseTitle" class="form-control" placeholder="About Course Title">
                             <span asp-validation-for="AboutCourseTitle" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">About Course</label>
+                            <label asp-for="AboutCourse">About Course</label>
                             <textarea asp-for="AboutCourse" cols="23" rows="9"></textarea>
                             <span asp-validation-for="AboutCourse" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">How to apply title</label>
+                            <label asp-for="HowtoApplyTitle">How to apply title</label>
                             <input asp-for="HowtoApplyTitle" class="form-control" placeholder="How to apply Title">
                             <span asp-validation-for="HowtoApplyTitle" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">How to apply</label>
-                            <textarea asp-for="HowtoApply"  cols="23" rows="9"></textarea>
+                            <label asp-for="HowtoApply">How to apply</label>
+                            <textarea asp-for="HowtoApply" cols="23" rows="9"></textarea>
                             <span asp-validation-for="HowtoApply" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Certification</label>
+                            <label asp-for="Certification">Certification</label>
                             <textarea asp-for="Certification" cols="23" rows="9"></textarea>
                             <span asp-validation-for="Certification" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Start Date</label>
+                            <label asp-for="Starts">Start Date</label>
                             <input asp-for="Starts" cols="23" rows="9">
                             <span asp-validation-for="Starts" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Duration</label>
+                            <label asp-for="Duration">Duration</label>
                             <input asp-for="Duration" class="form-control" placeholder="Duration">
                             <span asp-validation-for="Duration" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">ClassDuration</label>
+                            <label asp-for="ClassDuration">ClassDuration</label>
                             <input asp-for="ClassDuration" class="form-control" placeholder="ClassDuration">
                             <span asp-validation-for="ClassDuration" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Language</label>
+                            <label asp-for="Language">Language</label>
                             <input asp-for="Language" class="form-control" placeholder="language">
                             <span asp-validation-for="Language" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Price</label>
+                            <label asp-for="Price">Price</label>
                             <input asp-for="Price" class="form-control" placeholder="Price">
                             <span asp-validation-for="Price" style="color:darkred"></span>
                         </div>
-                        <select asp-for="CategoryId" class="form-select" aria-label="Default select example">
+                        <select asp-for="CategoryId"  class="form-select" aria-label="Default select example">
                             @foreach (var category in categories)
                             {
                                 <option value="@category.Id">@category.Title</option>
@@ -70,14 +68,20 @@
                             }
 
                         </select><br />
+                        <p>
+                            <img width="400" height="200" src="~/img/course/@Model.ImageUrl" alt="" />
+                        </p>
                         <div class="form-group">
-                            <label for="exampleInputEmail1"></label>
+                            <label asp-for="Photos"></label>
                             <input asp-for="Photos" />
                             <span asp-validation-for="Photos" style="color:darkred"></span>
 
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        
+                            <a class="btn btn-outline-dark"  asp-action="index">Go Back  </a>
+                        
 
                     </form>
                 </div>

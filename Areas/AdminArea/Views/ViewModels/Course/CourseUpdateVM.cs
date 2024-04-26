@@ -3,6 +3,7 @@
     public class CourseUpdateVM
     {
         public IFormFile[]? Photos { get; set; }
+        public string ImageUrl { get; set; }
         public int CategoryId { get; set; }
         public string AboutCourse { get; set; }
 

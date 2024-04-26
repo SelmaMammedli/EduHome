@@ -1,6 +1,7 @@
 ﻿using EduHome.Areas.AdminArea.Views.ViewModels.Course;
 using EduHome.DAL;
 using EduHome.Extensions;
+using EduHome.Helper;
 using EduHome.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -80,6 +81,86 @@ namespace EduHome.Areas.AdminArea.Controllers
             _context.Courses.Add(newCourses);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public IActionResult Update(int? id)
+        {
+            ViewBag.Category = _context.Categories.ToList();
+            if (id == null) return NotFound();
+            var category = _context.Courses
+                .Include(c => c.Category)
+                .AsNoTracking()
+                .FirstOrDefault(c=>c.Id==id);
+            if (category == null) return NotFound();    
+            CourseUpdateVM courseUpdateVM = new CourseUpdateVM();
+            courseUpdateVM.CategoryId = category.CategoryId;
+            courseUpdateVM.HowtoApply=category.HowtoApply;
+            courseUpdateVM.HowtoApplyTitle=category.HowtoApplyTitle;
+            courseUpdateVM.AboutCourse = category.AboutCourse;
+            courseUpdateVM.AboutCourseTitle = category.AboutCourseTitle;
+            courseUpdateVM.Starts=category.Starts;
+            courseUpdateVM.Duration=category.Duration;
+            courseUpdateVM.ClassDuration=category.ClassDuration;
+            courseUpdateVM.Certification=category.Certification;
+            courseUpdateVM.Language=category.Language;
+            courseUpdateVM.Price=category.Price;
+            courseUpdateVM.ImageUrl = category.ImageUrl;
+
+
+            return View(courseUpdateVM);
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Update(CourseUpdateVM courseUpdateVM,int?id)
+        {
+            ViewBag.Category = _context.Categories.ToList();
+            if (id == null) return NotFound();
+            var category = _context.Courses
+                .Include(c => c.Category)
+                .FirstOrDefault(c => c.Id == id);
+            if (category == null) return NotFound();
+           
+           
+            var photos = courseUpdateVM.Photos;
+
+            courseUpdateVM.ImageUrl=category.ImageUrl;
+            if ( photos!=null && photos.Length > 0)
+            {
+
+                foreach (var photo in photos)
+                {
+
+                    if (!photo.CheckFile())
+                    {
+                        ModelState.AddModelError("Photo", "Please upload right file");
+                        return View(courseUpdateVM);
+                    }
+                    if (photo.CheckSize(1000))
+                    {
+                        ModelState.AddModelError("Photo", "Please choose normal file");
+                        return View(courseUpdateVM);
+                    }
+                    string fileName = photo.SaveFile("img/course");
+                    DeleteFileHelper.DeleteFile("img/course", category.ImageUrl);
+                    category.ImageUrl = fileName;
+                }
+
+
+            };
+            category.CategoryId=courseUpdateVM.CategoryId;
+            category.HowtoApply = courseUpdateVM.HowtoApply;
+            category.HowtoApplyTitle = courseUpdateVM.HowtoApplyTitle;
+            category.AboutCourse = courseUpdateVM.AboutCourse;
+            category.AboutCourseTitle = courseUpdateVM.AboutCourseTitle;
+            category.Starts = courseUpdateVM.Starts;
+            category.Duration = courseUpdateVM.Duration;
+            category.ClassDuration = courseUpdateVM.ClassDuration;
+            category.Certification = courseUpdateVM.Certification;
+            category.Language = courseUpdateVM.Language;
+            category.Price = courseUpdateVM.Price;
+           
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
         }
     }
 }
