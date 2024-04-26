@@ -11,6 +11,7 @@ namespace EduHome.ViewModels
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<Courses> Courses { get; set; }
         public WhyYouChoose WhyYouChoose { get; set; }
+        public Welcome Welcome { get; set; }
 
 
     }

@@ -39,7 +39,7 @@ namespace EduHome.Controllers
         {
             CoursesVM coursesVM = new CoursesVM();
             coursesVM.Blog = _context.Blogs.FirstOrDefault(c => c.Id == id);
-            coursesVM.Blogs=_context.Blogs.ToList();
+            coursesVM.Blogs=_context.Blogs.Take(3).ToList();
             coursesVM.Categories= _context.Categories.ToList();
             coursesVM.Courses = _context.Courses
                 .Include(c => c.Category)
@@ -50,6 +50,7 @@ namespace EduHome.Controllers
         {
             HomeVM homeVm = new HomeVM();
             homeVm.NoticeBoards = _context.NoticesBoards.ToList();
+            homeVm.Welcome = _context.Welcomes.FirstOrDefault();
             return View(homeVm);
         }
         public IActionResult Blog()
