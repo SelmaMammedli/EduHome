@@ -1,0 +1,36 @@
+﻿@model Courses
+<hr />
+<div class="container ">
+    <div class="raw">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <p>
+                        <img width="400" height="200" src="~/img/course/@Model.ImageUrl" alt="" />
+                    </p>
+                    Course Title: <b style="color red">@Model.AboutCourseTitle</b><hr />
+                    About Course : <i>@Model.AboutCourse</i><hr />
+                    Course Title: <i>@Model.HowtoApplyTitle</i><hr />
+                    Apply Course: <i>@Model.HowtoApply</i><hr />
+                    Course Certification: <i>@Model.Certification</i><hr />
+                    Course Start Date: <i>@Model.Starts.ToString("dd MMMM yyyy")</i><hr />
+                    Course Duration: <i>@Model.Duration</i><hr />
+                    Course Duration: <i>@Model.ClassDuration</i><hr />
+                    Course Language: <i>@Model.Language</i><hr />
+                    Course Price: <i>@Model.Price</i><hr />
+                    Category of course: <i>@Model.Category.Title</i><hr />
+
+
+                    <a class="btn btn-outline-dark" asp-action="index">Go Back</a>
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

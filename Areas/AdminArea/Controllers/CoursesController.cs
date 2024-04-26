@@ -162,5 +162,34 @@ namespace EduHome.Areas.AdminArea.Controllers
             return RedirectToAction("Index");
 
         }
+        public IActionResult Delete(int? id)
+        {
+            if (id is null) return NotFound();
+            var existCourse = _context.Courses
+                .Include(c => c.Category)
+                .FirstOrDefault(c => c.Id == id);
+            if (existCourse == null) return NotFound();
+            return View(existCourse);
+        }
+        public IActionResult DeleteCourse(int? id)
+        {
+            if (id is null) return NotFound();
+            var existCourse = _context.Courses
+                .FirstOrDefault(c => c.Id == id);
+            if (existCourse == null) return NotFound();
+            DeleteFileHelper.DeleteFile("img/course", existCourse.ImageUrl);
+            _context.Courses.Remove(existCourse);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult Detail(int? id)
+        {
+            if (id is null) return NotFound();
+            var existCourse = _context.Courses
+                .Include(c => c.Category)
+                .FirstOrDefault(c => c.Id == id);
+            if (existCourse == null) return NotFound();
+            return View(existCourse);
+        }
     }
 }

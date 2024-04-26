@@ -29,7 +29,22 @@ namespace EduHome.Controllers
         }
         public IActionResult Courses()
         {
-            return View();
+            HomeVM homeVM = new HomeVM();
+            homeVM.Courses= _context.Courses
+                .Include(c=>c.Category)
+                .ToList();
+            return View(homeVM);
+        }
+        public IActionResult CoursesDetails(int? id)
+        {
+            CoursesVM coursesVM = new CoursesVM();
+            coursesVM.Blog = _context.Blogs.FirstOrDefault(c => c.Id == id);
+            coursesVM.Blogs=_context.Blogs.ToList();
+            coursesVM.Categories= _context.Categories.ToList();
+            coursesVM.Courses = _context.Courses
+                .Include(c => c.Category)
+                .FirstOrDefault(c => c.Id == id);
+            return View(coursesVM);
         }
         public IActionResult About()
         {
