@@ -24,6 +24,8 @@ namespace EduHome.Controllers
             homeVm.Sliders = _context.Sliders.ToList();
             homeVm.NoticeBoards=_context.NoticesBoards.ToList();
             homeVm.Boards = _context.Boards.ToList();
+            homeVm.Courses= _context.Courses.Include(c => c.Category).Take(3).ToList();
+            homeVm.Blogs= _context.Blogs.Take(3).ToList();
             homeVm.WhyYouChoose = _context.WhyYouChooses.FirstOrDefault();
             return View(homeVm);
         }
@@ -62,7 +64,7 @@ namespace EduHome.Controllers
         public IActionResult BlogDetails(int?id)
         {
             BlogVM blogVM= new BlogVM();
-            blogVM.Blogs = _context.Blogs.ToList();
+            blogVM.Blogs = _context.Blogs.Take(3).ToList();
             blogVM.Blog = _context.Blogs.FirstOrDefault(p => p.Id == id);
             blogVM.Categories = _context.Categories.ToList();
             
