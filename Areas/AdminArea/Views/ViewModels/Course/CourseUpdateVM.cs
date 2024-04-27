@@ -18,7 +18,7 @@
         public DateTime Starts { get; set; }
         public int Duration { get; set; }
         public int ClassDuration { get; set; }
-        public string Language { get; set; }
+        public int LanguageId { get; set; }
 
         public int Price { get; set; }
     }

@@ -24,9 +24,8 @@ namespace EduHome.Models
         public DateTime Starts { get; set; }
         public int Duration { get; set; }
         public int ClassDuration { get; set; }
-        public string Language { get; set; }
-        [NotMapped]
-        public string? ShortLan => Language.Length > 5 ? Language.Substring(0, 2) + "..." : Language;
+        public int LanguageId { get; set; }
+        public Language Language { get; set; }
         public int Price { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }

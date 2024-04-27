@@ -24,7 +24,7 @@ namespace EduHome.Controllers
             homeVm.Sliders = _context.Sliders.ToList();
             homeVm.NoticeBoards=_context.NoticesBoards.ToList();
             homeVm.Boards = _context.Boards.ToList();
-            homeVm.Courses= _context.Courses.Include(c => c.Category).Take(3).ToList();
+            homeVm.Courses= _context.Courses.Include(c => c.Category).Include(c => c.Language).Take(3).ToList();
             homeVm.Blogs= _context.Blogs.Take(3).ToList();
             homeVm.WhyYouChoose = _context.WhyYouChooses.FirstOrDefault();
             return View(homeVm);
@@ -34,6 +34,7 @@ namespace EduHome.Controllers
             HomeVM homeVM = new HomeVM();
             homeVM.Courses= _context.Courses
                 .Include(c=>c.Category)
+                .Include(c => c.Language)
                 .ToList();
             return View(homeVM);
         }
@@ -45,6 +46,7 @@ namespace EduHome.Controllers
             coursesVM.Categories= _context.Categories.ToList();
             coursesVM.Courses = _context.Courses
                 .Include(c => c.Category)
+                .Include(c => c.Language)
                 .FirstOrDefault(c => c.Id == id);
             return View(coursesVM);
         }

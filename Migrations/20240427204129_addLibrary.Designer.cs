@@ -4,6 +4,7 @@ using EduHome.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHome.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240427204129_addLibrary")]
+    partial class addLibrary
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,7 +238,7 @@ namespace EduHome.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LanguageId")
+                    b.Property<int?>("LanguageId")
                         .HasColumnType("int");
 
                     b.Property<int>("Price")
@@ -607,15 +610,11 @@ namespace EduHome.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EduHome.Models.Language", "Language")
+                    b.HasOne("EduHome.Models.Language", null)
                         .WithMany("Courses")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LanguageId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("EduHome.Models.Teacher", b =>

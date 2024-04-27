@@ -22,6 +22,7 @@ namespace EduHome.Areas.AdminArea.Controllers
         {
             var datas=_context.Courses
                 .Include(c=>c.Category)
+                .Include(c=>c.Language)
                 .AsNoTracking()
                 .ToList();
             return View(datas);
@@ -29,6 +30,7 @@ namespace EduHome.Areas.AdminArea.Controllers
         public IActionResult Create()
         {
             ViewBag.Category=_context.Categories.ToList();
+            ViewBag.Language = _context.Languages.ToList();
             return View();
         }
         [HttpPost]
@@ -36,6 +38,7 @@ namespace EduHome.Areas.AdminArea.Controllers
         public IActionResult Create(CourseCreateVM createVM)
         {
             ViewBag.Category = _context.Categories.ToList();
+            ViewBag.Language=_context.Languages.ToList();
             if (!ModelState.IsValid) return View();
 
             var photos = createVM.Photos;
@@ -73,7 +76,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             newCourses.Duration = createVM.Duration;
             newCourses.ClassDuration = createVM.ClassDuration;
             newCourses.Certification = createVM.Certification;
-            newCourses.Language = createVM.Language;
+            newCourses.LanguageId = createVM.LanguageId;
             newCourses.HowtoApply = createVM.HowtoApply;
             newCourses.HowtoApplyTitle = createVM.HowtoApplyTitle;
             newCourses.Starts=createVM.Starts;
@@ -85,9 +88,11 @@ namespace EduHome.Areas.AdminArea.Controllers
         public IActionResult Update(int? id)
         {
             ViewBag.Category = _context.Categories.ToList();
+            ViewBag.Language = _context.Languages.ToList();
             if (id == null) return NotFound();
             var category = _context.Courses
                 .Include(c => c.Category)
+                .Include(c=>c.Language)
                 .AsNoTracking()
                 .FirstOrDefault(c=>c.Id==id);
             if (category == null) return NotFound();    
@@ -101,7 +106,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             courseUpdateVM.Duration=category.Duration;
             courseUpdateVM.ClassDuration=category.ClassDuration;
             courseUpdateVM.Certification=category.Certification;
-            courseUpdateVM.Language=category.Language;
+            courseUpdateVM.LanguageId = category.LanguageId;
             courseUpdateVM.Price=category.Price;
             courseUpdateVM.ImageUrl = category.ImageUrl;
 
@@ -113,9 +118,11 @@ namespace EduHome.Areas.AdminArea.Controllers
         public IActionResult Update(CourseUpdateVM courseUpdateVM,int?id)
         {
             ViewBag.Category = _context.Categories.ToList();
+            ViewBag.Language = _context.Languages.ToList();
             if (id == null) return NotFound();
             var category = _context.Courses
                 .Include(c => c.Category)
+                .Include(c=>c.Language)
                 .FirstOrDefault(c => c.Id == id);
             if (category == null) return NotFound();
            
@@ -155,7 +162,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             category.Duration = courseUpdateVM.Duration;
             category.ClassDuration = courseUpdateVM.ClassDuration;
             category.Certification = courseUpdateVM.Certification;
-            category.Language = courseUpdateVM.Language;
+            category.LanguageId = courseUpdateVM.LanguageId;
             category.Price = courseUpdateVM.Price;
            
             _context.SaveChanges();
@@ -167,6 +174,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             if (id is null) return NotFound();
             var existCourse = _context.Courses
                 .Include(c => c.Category)
+                .Include(c => c.Language)
                 .FirstOrDefault(c => c.Id == id);
             if (existCourse == null) return NotFound();
             return View(existCourse);
@@ -187,6 +195,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             if (id is null) return NotFound();
             var existCourse = _context.Courses
                 .Include(c => c.Category)
+                .Include(c => c.Language)
                 .FirstOrDefault(c => c.Id == id);
             if (existCourse == null) return NotFound();
             return View(existCourse);
