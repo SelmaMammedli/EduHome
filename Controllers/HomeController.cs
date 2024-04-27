@@ -53,6 +53,10 @@ namespace EduHome.Controllers
             HomeVM homeVm = new HomeVM();
             homeVm.NoticeBoards = _context.NoticesBoards.ToList();
             homeVm.Welcome = _context.Welcomes.FirstOrDefault();
+            homeVm.Teachers = _context.Teachers
+                .
+                Include(c => c.License)
+                .Take(4).ToList();
             return View(homeVm);
         }
         public IActionResult Blog()
@@ -89,7 +93,26 @@ namespace EduHome.Controllers
         }
         public IActionResult Teacher()
         {
-            return View();
+            HomeVM homeVM=new HomeVM();
+            homeVM.Teachers = _context.Teachers
+                .Include(c => c.Category)
+                .Include(c => c.License)
+                .ToList();
+            homeVM.Categories = _context.Categories.ToList();
+
+            return View(homeVM);
+        }
+        public IActionResult TeacherDetails(int?id)
+        {
+            TeacherVM teacherVM = new TeacherVM();
+            teacherVM.Blogs=_context.Blogs.Take(3).ToList();
+            teacherVM.Teacher = _context.Teachers
+                .Include(c => c.Category)
+                .Include(c => c.License)
+                .FirstOrDefault(c => c.Id == id);
+            teacherVM.Categories = _context.Categories.ToList();
+            teacherVM.Licenses=_context.Licenses.ToList();
+            return View(teacherVM);
         }
         public IActionResult Contact()
         {

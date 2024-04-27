@@ -50,74 +50,28 @@
             </div>
         </div>
         <div class="row">
+            @foreach(var teacher in Model.Teachers)
+            {
+                
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="single-teacher">
                     <div class="single-teacher-img">
-                        <a href="teacher-details.html"><img src="~/img/teacher/teacher1.jpg" alt="teacher"></a>
+                            <a asp-action="TeacherDetails" asp-route-id="@teacher.Id"><img src="~/img/teacher/@teacher.ImageUrl" alt="teacher"></a>
                     </div>
                     <div class="single-teacher-content text-center">
-                        <h2><a href="teacher-details.html">STUART KELVIN</a></h2>
-                        <h4>Associate Professor</h4>
+                            <h2><a asp-action="TeacherDetails" asp-route-id="@teacher.Id">@teacher.FullName</a></h2>
+                        <h4>@teacher.License.Title</h4>
                         <ul>
-                            <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                            <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                            <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="@teacher.Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="@teacher.Instagram"><i class="zmdi zmdi-instagram"></i></a></li>
+                                <li><a href="@teacher.Linkedin"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                <li><a href="@teacher.Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="single-teacher">
-                    <div class="single-teacher-img">
-                        <a href="teacher-details.html"><img src="~/img/teacher/teacher2.jpg" alt="teacher"></a>
-                    </div>
-                    <div class="single-teacher-content text-center">
-                        <h2><a href="teacher-details.html">eamily cristian</a></h2>
-                        <h4>Associate Professor</h4>
-                        <ul>
-                            <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                            <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                            <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="single-teacher">
-                    <div class="single-teacher-img">
-                        <a href="teacher-details.html"><img src="~/img/teacher/teacher3.jpg" alt="teacher"></a>
-                    </div>
-                    <div class="single-teacher-content text-center">
-                        <h2><a href="teacher-details.html">kevin williams</a></h2>
-                        <h4>Associate Professor</h4>
-                        <ul>
-                            <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                            <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                            <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 hidden-sm col-xs-12">
-                <div class="single-teacher">
-                    <div class="single-teacher-img">
-                        <a href="teacher-details.html"><img src="~/img/teacher/teacher4.jpg" alt="teacher"></a>
-                    </div>
-                    <div class="single-teacher-content text-center">
-                        <h2><a href="teacher-details.html">salina gomaze</a></h2>
-                        <h4>Associate Professor</h4>
-                        <ul>
-                            <li><a href="https://www.facebook.com/devitems/?ref=bookmarks"><i class="zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="https://www.pinterest.com/devitemsllc/"><i class="zmdi zmdi-pinterest"></i></a></li>
-                            <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
-                            <li><a href="https://twitter.com/devitemsllc"><i class="zmdi zmdi-twitter"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            }
+          
         </div>
     </div>
 </div>
