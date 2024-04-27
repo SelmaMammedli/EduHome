@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Teacher>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Teacher Table</h4>
+                    <p class="card-description">
+                        <a asp-controller="teacher" asp-action="create" class="btn btn-outline-success">Create Teachers</a>
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>FullName</th>
+                                    <th>About</th>
+                                    <th>License</th>
+                                    <th>Category</th>
+                                    <th>Experience</th>
+                                    <th>Hobbies</th>
+                                    <th>Faculty</th>
+                                    <th>Degree</th>
+                                    <th>Mail</th>
+                                    <th>Phone</th>
+                                    <th>Facebook</th>
+                                    <th>Instagram</th>
+                                    <th>Linkedin</th>
+                                    <th>Twitter</th>
+                                    <th>Language</th>
+                                    <th>Leadership</th>
+                                    <th>Development</th>
+                                    <th>Communication</th>
+                                    <th>Innovation</th>
+                                    <th>Researching</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var teacher in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img width="200" height="100" src="~/img/teacher/@teacher.ImageUrl" alt="" />
+                                        </td>
+                                        <td>@teacher.FullName</td>
+                                        <td>@teacher.ShortAbout</td>
+                                        <td>@teacher.License.Title</td>
+                                        <td>@teacher.Category.Title</td>
+                                        <td>@teacher.Experience</td>
+                                        <td>@teacher.Hobbies</td>
+                                        <td>@teacher.Faculty</td>
+                                        <td>@teacher.Degree</td>
+                                        <td>@teacher.Mail</td>
+                                        <td>@teacher.Phone</td>
+                                        <td>@teacher.Facebook</td>
+                                        <td>@teacher.Instagram</td>
+                                        <td>@teacher.Linkedin</td>
+                                        <td>@teacher.Twitter</td>
+                                        <td>@teacher.LanguagePercent</td>
+                                        <td>@teacher.Leadership</td>
+                                        <td>@teacher.Development</td>
+                                        <td>@teacher.Communication</td>
+                                        <td>@teacher.Innovation</td>
+                                        <td>@teacher.Researching</td>
+                                        <td>
+                                            <a asp-action="update" asp-route-id="@teacher.Id" class="btn btn-outline-info"><i class="ni ni-ruler-pencil"></i></a>
+                                            <a asp-action="delete" asp-route-id="@teacher.Id" class="btn btn-outline-secondary"><i class="ni ni-fat-remove"></i></a>
+                                            <a asp-action="detail" asp-route-id="@teacher.Id" class="btn btn-outline-behance"><i class="ni ni-settings-gear-65"></i></a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

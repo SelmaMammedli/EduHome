@@ -1,0 +1,45 @@
+﻿@model Teacher
+<hr />
+<div class="container ">
+    <div class="raw">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <p>
+                        <img width="400" height="200" src="~/img/teacher/@Model.ImageUrl" alt="" />
+                    </p>
+                    FullName: <b style="color red">@Model.FullName</b><hr />
+                    About : <i>@Model.AboutMe</i><hr />
+                    Category: <i>@Model.Category.Title</i><hr />
+                    License: <i>@Model.License.Title</i><hr />
+                    Experience: <i>@Model.Experience month</i><hr />
+                    Hobbies: <i>@Model.Hobbies</i><hr />
+                    Faculty: <i>@Model.Faculty</i><hr />
+                    Degree: <i>@Model.Degree</i><hr />
+                    Mail: <i>@Model.Mail</i><hr />
+                    Phone: <i>@Model.Phone</i><hr />
+                    Facebook: <i><a href="@Model.Facebook">@Model.Facebook</a></i><hr />
+                    Instagram: <i><a href="@Model.Instagram">@Model.Instagram</a></i><hr />
+                    Linkedin: <i><a href="@Model.Linkedin">@Model.Linkedin</a></i><hr />
+                    Twitter : <i><a href="@Model.Twitter">@Model.Twitter</a></i><hr />
+                    Language knowledge: <i>@Model.LanguagePercent %</i><hr />
+                    Leadership: <i>@Model.Leadership %</i><hr />
+                    Innovation: <i>@Model.Innovation %</i><hr />
+                    Communication: <i>@Model.Communication %</i><hr />
+                    Researching: <i>@Model.Researching %</i><hr />
+                    Development: <i>@Model.Development %</i><hr />
+
+
+                    <a class="btn btn-outline-dark" asp-action="index">Go Back</a>
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
