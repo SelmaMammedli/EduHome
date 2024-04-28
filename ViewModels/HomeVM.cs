@@ -14,6 +14,9 @@ namespace EduHome.ViewModels
         public IEnumerable<Tag> Tags { get; set; }
         public IEnumerable<Student> Students { get; set; }
         public WhyYouChoose WhyYouChoose { get; set; }
+
+        
+       
         public Welcome Welcome { get; set; }
 
 

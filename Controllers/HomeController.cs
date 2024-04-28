@@ -3,6 +3,7 @@ using EduHome.DAL;
 using EduHome.Models;
 using EduHome.ViewModels;
 using EduHome.ViewModels.Contact;
+using EduHome.ViewModels.Subscribe;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -140,6 +141,23 @@ namespace EduHome.Controllers
             _context.Contacts.Add(contact);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult Subscribe(SubscribeVM subscribeVM)
+        {
+           
+            if(_context.Subscriptions.Any(s=>s.Email.ToLower()==subscribeVM.Email.ToLower()))
+            {
+                ModelState.AddModelError("Email", "This email already exist...");
+                return View();
+            }
+            Subscribe subscribe = new Subscribe();
+            subscribe.Email= subscribeVM.Email;
+            _context.Subscriptions.Add(subscribe);
+            _context.SaveChanges();
+            return RedirectToAction("Contact");
+
+            
         }
 
     }

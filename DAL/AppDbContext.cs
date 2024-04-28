@@ -23,5 +23,6 @@ namespace EduHome.DAL
         public DbSet<Language>Languages { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Subscribe> Subscriptions { get; set; }
     }
 }
