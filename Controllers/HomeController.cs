@@ -93,6 +93,10 @@ namespace EduHome.Controllers
         {
             return View();
         }
+        public IActionResult EventDetails()
+        {
+            return View();
+        }
         public IActionResult Teacher()
         {
             HomeVM homeVM=new HomeVM();

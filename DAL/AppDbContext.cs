@@ -21,5 +21,6 @@ namespace EduHome.DAL
         public DbSet<License>Licenses { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Language>Languages { get; set; }
+        public DbSet<Tag> Tags { get; set; }
     }
 }

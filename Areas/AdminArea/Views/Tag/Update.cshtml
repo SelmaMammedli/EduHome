@@ -1,17 +1,16 @@
-﻿
-@model LanguageCreateVM
+﻿@model TagUpdateVM
 <div class="container">
     <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title"> Language Create Form</h4>
+                    <h4 class="card-title"> Tag Update Form</h4>
                     <p class="card-description">
                         <a class="btn btn-outline-dark" asp-action="index">Go Back  </a>
                     </p>
                     <form enctype="multipart/form-data" class="forms-sample" method="post">
                         <div class="form-group">
-                            <label for="exampleInputUsername1">Title</label>
+                            <label asp-for="Title"></label>
                             <input asp-for="Title" class="form-control" placeholder="Title">
                             <span asp-validation-for="Title" style="color:darkred"></span>
                         </div>
@@ -33,4 +32,3 @@
     <partial name="_ValidationPartial"></partial>
 
 }
-

@@ -1,8 +1,8 @@
 ﻿namespace EduHome.Models
 {
-    public class Student
+    public class Tag
     {
         public int Id { get; set; }
-        public string FullName { get; set; }
+        public string Title { get; set; }
     }
 }
