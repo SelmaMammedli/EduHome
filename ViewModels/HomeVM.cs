@@ -13,10 +13,8 @@ namespace EduHome.ViewModels
         public IEnumerable<Teacher> Teachers { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
         public IEnumerable<Student> Students { get; set; }
+        public Subscribe Subscribe { get; set; }
         public WhyYouChoose WhyYouChoose { get; set; }
-
-        
-       
         public Welcome Welcome { get; set; }
 
 

@@ -1,4 +1,4 @@
-﻿namespace EduHome.ViewModels.Subscribe
+﻿namespace EduHome.ViewModels
 {
     public class SubscribeVM
     {
