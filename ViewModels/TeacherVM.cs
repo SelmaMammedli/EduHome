@@ -8,6 +8,7 @@ namespace EduHome.ViewModels
         public IEnumerable<Teacher> Teachers { get; set; }
         public IEnumerable<Blog> Blogs { get; set; }
         public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<License> Licenses { get; set; }    
+        public IEnumerable<License> Licenses { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }

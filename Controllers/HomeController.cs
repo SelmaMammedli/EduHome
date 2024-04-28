@@ -44,6 +44,7 @@ namespace EduHome.Controllers
             coursesVM.Blog = _context.Blogs.FirstOrDefault(c => c.Id == id);
             coursesVM.Blogs=_context.Blogs.Take(3).ToList();
             coursesVM.Categories= _context.Categories.ToList();
+            coursesVM.Tags= _context.Tags.ToList();
             coursesVM.Courses = _context.Courses
                 .Include(c => c.Category)
                 .Include(c => c.Language)
@@ -73,6 +74,7 @@ namespace EduHome.Controllers
             blogVM.Blogs = _context.Blogs.Take(3).ToList();
             blogVM.Blog = _context.Blogs.FirstOrDefault(p => p.Id == id);
             blogVM.Categories = _context.Categories.ToList();
+            blogVM.Tags = _context.Tags.ToList();
             
             //var blogVM=_context.Blogs.FirstOrDefault(x => x.Id == id);
             //var blogs=_context.Blogs.AsNoTracking().ToList();
@@ -105,6 +107,7 @@ namespace EduHome.Controllers
                 .Include(c => c.License)
                 .ToList();
             homeVM.Categories = _context.Categories.ToList();
+            homeVM.Tags = _context.Tags.ToList();
 
             return View(homeVM);
         }
