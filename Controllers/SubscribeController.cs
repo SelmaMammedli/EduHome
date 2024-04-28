@@ -35,7 +35,7 @@ namespace EduHome.Controllers
             subscribe.Email = subscribeVM.Email;
             _context.Subscriptions.Add(subscribe);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Contact","Home");
         }
     }
 }
