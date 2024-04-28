@@ -4,6 +4,7 @@ using EduHome.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHome.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240428121904_addStudentTable")]
+    partial class addStudentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,7 +347,7 @@ namespace EduHome.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("CoursesId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -365,7 +368,7 @@ namespace EduHome.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CoursesId");
 
                     b.ToTable("Students");
                 });
@@ -675,13 +678,13 @@ namespace EduHome.Migrations
 
             modelBuilder.Entity("EduHome.Models.Student", b =>
                 {
-                    b.HasOne("EduHome.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("EduHome.Models.Courses", "Courses")
+                        .WithMany("Students")
+                        .HasForeignKey("CoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("EduHome.Models.Teacher", b =>
@@ -759,6 +762,11 @@ namespace EduHome.Migrations
                     b.Navigation("Courses");
 
                     b.Navigation("Teachers");
+                });
+
+            modelBuilder.Entity("EduHome.Models.Courses", b =>
+                {
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("EduHome.Models.Language", b =>
