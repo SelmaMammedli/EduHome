@@ -26,6 +26,7 @@ namespace EduHome.Controllers
             homeVm.Boards = _context.Boards.ToList();
             homeVm.Courses= _context.Courses.Include(c => c.Category).Include(c => c.Language).Take(3).ToList();
             homeVm.Blogs= _context.Blogs.Take(3).ToList();
+            homeVm.Students=_context.Students.Include(c => c.Category).Take(3).ToList() ;
             homeVm.WhyYouChoose = _context.WhyYouChooses.FirstOrDefault();
             return View(homeVm);
         }
@@ -60,6 +61,7 @@ namespace EduHome.Controllers
                 .
                 Include(c => c.License)
                 .Take(4).ToList();
+            homeVm.Students = _context.Students.Include(c=>c.Category).Take(3).ToList();
             return View(homeVm);
         }
         public IActionResult Blog()
