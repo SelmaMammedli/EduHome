@@ -12,9 +12,10 @@
                         <table class="table">
                             <thead>
                                 <tr>
-
+                                    <th>Image</th>
                                     <th>Title</th>
                                     <th>Description</th>
+                                    <th>VideoLink</th>
                                     <th>Settings</th>
 
 
@@ -24,10 +25,12 @@
                                 @foreach (var wel in Model)
                                 {
                                     <tr>
-
+                                        <td>
+                                            <img width="200" height="100" src="~/img/about/@wel.ImageUrl" alt="" />
+                                        </td>
                                         <td>@wel.Title</td>
                                         <td>@wel.ShortDesc</td>
-
+                                        <td>@wel.VideoLink</td>
                                         <td>
                                             <a asp-action="update" asp-route-id="@wel.Id" class="btn btn-outline-info"><i class="ni ni-ruler-pencil"></i></a>
                                             <a asp-action="delete" asp-route-id="@wel.Id" class="btn btn-outline-secondary"><i class="ni ni-fat-remove"></i></a>
