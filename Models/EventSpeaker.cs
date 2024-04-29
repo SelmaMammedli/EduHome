@@ -1,11 +1,11 @@
 ﻿namespace EduHome.Models
 {
-    public class EventTeacher
+    public class EventSpeaker
     {
         public int Id { get; set; }
         public int EventId { get; set; }
         public Event Event { get; set; }
-        public int TeacherId { get; set; }
-        public Teacher Teacher { get; set;}
+        public int SpeakerId { get; set; }
+        public Speaker Speaker { get; set; }
     }
 }

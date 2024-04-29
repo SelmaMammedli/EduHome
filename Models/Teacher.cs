@@ -30,6 +30,6 @@ namespace EduHome.Models
         public int Communication { get; set; }
         public int Innovation { get; set; }
         public int Researching { get; set; }
-        public List<EventTeacher>EventTeachers { get; set; }
+      
     }
 }
