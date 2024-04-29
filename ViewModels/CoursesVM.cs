@@ -1,4 +1,5 @@
 ﻿using EduHome.Models;
+using EduHome.ViewModels.Contact;
 
 namespace EduHome.ViewModels
 {
@@ -10,5 +11,6 @@ namespace EduHome.ViewModels
         public IEnumerable<Tag> Tags { get; set; }
         public Courses Courses { get; set; }
         public Category Category { get; set; }
+        public ContactVM ContactVM { get; set; }
     }
 }
