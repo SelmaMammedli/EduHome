@@ -1,27 +1,30 @@
-﻿@model SliderUpdateVM
+﻿
+@model SpeakerCreateVM
 <div class="container">
     <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Slide Update Form</h4>
+                    <h4 class="card-title">Speaker Create Form</h4>
                     <p class="card-description">
                         <a class="btn btn-outline-dark" asp-action="index">Go Back  </a>
                     </p>
                     <form enctype="multipart/form-data" class="forms-sample" method="post">
                         <div class="form-group">
-                            <label asp-for="Title"></label>
-                            <input asp-for="Title" class="form-control" placeholder="Title">
-                            <span asp-validation-for="Title" style="color:darkred"></span>
+                            <label for="exampleInputUsername1">FullName</label>
+                            <input asp-for="FullName" class="form-control" placeholder="FullName">
+                            <span asp-validation-for="FullName" style="color:darkred"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Descrription">Description</label>
-                            <textarea asp-for="Descrription" cols="23" rows="9"></textarea>
-                            <span asp-validation-for="Descrription" style="color:darkred"></span>
+                            <label for="exampleInputEmail1">Profession</label>
+                            <input asp-for="Profession" class="form-control" placeholder="Profession">
+                            <span asp-validation-for="Profession" style="color:darkred"></span>
                         </div>
-                        <p>
-                            <img width="400" height="200" src="~/img/slider/@Model.ImageUrl" alt="" />
-                        </p>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Degree</label>
+                            <input asp-for="Degree" class="form-control" placeholder="Degree">
+                            <span asp-validation-for="Degree" style="color:darkred"></span>
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1"></label>
                             <input asp-for="Photo" />

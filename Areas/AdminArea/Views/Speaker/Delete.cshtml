@@ -1,0 +1,30 @@
+﻿@model Speaker
+<hr />
+<div class="container ">
+    <div class="raw">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <p>
+                        <img width="400" height="200" src="~/img/teacher/@Model.ImageUrl" alt="" />
+                    </p>
+                    Speaker FullName: <b style="color red">@Model.FullName</b><hr />
+                    Speaker Profession: <i>@Model.Profession</i><hr />
+                    Speaker Degree: <i>@Model.Degree</i><hr />
+
+
+                    <a class="btn btn-outline-dark" asp-action="index">Go Back  </a>
+
+                    <a class="btn btn-outline-danger" asp-action="DeleteSpeaker" asp-route-id="@Model.Id">Delete  </a>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
