@@ -21,18 +21,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var board in Model)
+                                @foreach (var contact in Model)
                                 {
                                     <tr>
-                                        <td>@board.Id</td>
-                                        <td>@board.Name</td>
-                                        <td>@board.Email</td>
-                                        <td>@board.Subject</td>
-                                        <td>@board.ShortMesg</td>
+                                        <td>@contact.Id</td>
+                                        <td>@contact.Name</td>
+                                        <td>@contact.Email</td>
+                                        <td>@contact.Subject</td>
+                                        <td>@contact.ShortMesg</td>
 
                                         <td>
-                                            
-                                            <a asp-action="detail" asp-route-id="@board.Id" class="btn btn-outline-behance"><i class="ni ni-settings-gear-65"></i></a>
+                                            <a asp-action="delete" asp-route-id="@contact.Id" class="btn btn-outline-secondary"><i class="ni ni-fat-remove"></i></a>
+                                            <a asp-action="detail" asp-route-id="@contact.Id" class="btn btn-outline-behance"><i class="ni ni-settings-gear-65"></i></a>
                                         </td>
 
                                     </tr>

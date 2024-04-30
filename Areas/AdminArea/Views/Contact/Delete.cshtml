@@ -1,0 +1,28 @@
+﻿@model Contact
+<hr />
+<div class="container ">
+    <div class="raw">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+
+                    Name: <i>@Model.Name</i><hr />
+                    Email:<i>@Model.Email</i><hr />
+                    Subject:<b>@Model.Subject</b><hr />
+                    Message:<i>@Model.Message</i><hr />
+
+
+                    <a class="btn btn-outline-dark" asp-action="index">Go Back  </a>
+
+                    <a class="btn btn-outline-danger" asp-action="DeleteContact" asp-route-id="@Model.Id">Delete  </a>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
