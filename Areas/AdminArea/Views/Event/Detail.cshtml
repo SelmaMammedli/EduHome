@@ -1,0 +1,41 @@
+﻿@model Event
+<hr />
+<div class="container ">
+    <div class="raw">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <p>
+                        <img width="400" height="200" src="~/img/event/@Model.ImageUrl" alt="" />
+                    </p>
+                    Title: <b style="color red">@Model.Title</b><hr />
+                    Venue : <i>@Model.Venue</i><hr />
+                    Description: <i>@Model.Description</i><hr />
+
+                    Start Date: <i>@Model.StartDate.ToString("dd MMMM yyyy")</i><hr />
+                    End Date: <i>@Model.EndDate.ToString("dd MMMM yyyy")</i><hr />
+
+                    @* Speaker: <i>@Model.Category.Title</i><hr />*@
+                    Speakers:
+                    <ul>
+                        @foreach (var speaker in Model.EventSpeakers)
+                        {
+                            <li>@speaker.Speaker.FullName</li>
+
+                        }
+                    </ul>
+
+
+                    <a class="btn btn-outline-dark" asp-action="index">Go Back</a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
