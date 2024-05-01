@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace EduHome.Areas.AdminArea.Controllers
 {
@@ -98,6 +99,14 @@ namespace EduHome.Areas.AdminArea.Controllers
             eventUpdateVM.Title = existEvent.Title;
             eventUpdateVM.Description=existEvent.Description;
             eventUpdateVM.ImageUrl= existEvent.ImageUrl;
+           // eventUpdateVM.SpeakerIds = existEvent.SpeakerIds;
+            foreach (var speakerId in existEvent.SpeakerIds)
+            {
+                EventSpeaker eventSpeaker = new();
+                existEvent.Id = eventSpeaker.EventId;
+                eventSpeaker.SpeakerId = speakerId;
+                
+            }
             return View(eventUpdateVM);
         }
         [HttpPost]
@@ -131,10 +140,10 @@ namespace EduHome.Areas.AdminArea.Controllers
                 
             };
             List<EventSpeaker> list = new();
-            foreach (var speakerId in eventUpdateVM.SpeakerIds)
+            foreach (var speakerId in existEvent.SpeakerIds)
             {
                 EventSpeaker eventSpeaker = new();
-                eventSpeaker.EventId = existEvent.Id;
+                 existEvent.Id=eventSpeaker.EventId;
                 eventSpeaker.SpeakerId = speakerId;
                 list.Add(eventSpeaker);
             }
@@ -144,7 +153,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             existEvent.Title=eventUpdateVM.Title;
             existEvent.Description=eventUpdateVM.Description;
             existEvent.Venue=eventUpdateVM.Venue;
-            existEvent.EventSpeakers = list;
+            list = eventUpdateVM.EventSpeakers;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

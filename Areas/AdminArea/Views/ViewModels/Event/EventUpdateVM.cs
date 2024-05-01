@@ -20,6 +20,6 @@ namespace EduHome.Areas.AdminArea.Views.ViewModels.Event
         public string? ShortDesc => Description.Length > 10 ? Description.Substring(0, 10) + "..." : Description;
         public List<EventSpeaker>? EventSpeakers { get; set; }
         [NotMapped]
-        public List<int> SpeakerIds { get; set; }
+        public List<int>? SpeakerIds { get; set; }
     }
 }
