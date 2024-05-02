@@ -1,5 +1,7 @@
 using EduHome.DAL;
 using EduHome.Models;
+using EduHome.Services.Implementations;
+using EduHome.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddIdentity<AppUser, IdentityRole>(identityOption =>
 {
     identityOption.Password.RequiredLength = 5;
@@ -21,7 +24,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(identityOption =>
 
     identityOption.User.RequireUniqueEmail = true;
 
-    //identityOption.SignIn.RequireConfirmedEmail = true;
+    identityOption.SignIn.RequireConfirmedEmail = true;
     identityOption.Lockout.MaxFailedAccessAttempts = 3;
     identityOption.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
     identityOption.Lockout.AllowedForNewUsers = true;

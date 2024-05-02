@@ -1,4 +1,5 @@
 ﻿using EduHome.Models;
+using EduHome.Services.Interfaces;
 using EduHome.ViewModels.UserVM;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ namespace EduHome.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IEmailService _emailService;
 
-        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailService = emailService;
         }
 
         public IActionResult Register()
@@ -41,7 +44,25 @@ namespace EduHome.Controllers
                 return View(registerVM);
 
             }
+            //email confirmation
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var link = Url.Action(nameof(VerifyEmail), "Account", new { token, email = user.Email },
+                Request.Scheme, Request.Host.ToString());
+            string body = String.Empty;
+            using (StreamReader streamReader = new StreamReader("wwwroot/emailTemplate/verifyEmailTemplate.html"))
+            {
+                body = streamReader.ReadToEnd();
+            }
+            body = body.Replace("{{name}}", user.FullName);
+            body = body.Replace("{{link}}", link);
+            _emailService.SendEmail(user.Email, link, "Verify EduHome email", "Verify email", body);
             return RedirectToAction("Index","Home");
+        }
+        public async Task<IActionResult> VerifyEmail(string token, string email)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(email);
+            await _userManager.ConfirmEmailAsync(user, token);
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult Login()
         {
