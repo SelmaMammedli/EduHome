@@ -96,11 +96,24 @@ namespace EduHome.Controllers
        
         public IActionResult Event()
         {
-            return View();
+            EventVM eventVM = new EventVM();
+           
+            eventVM.Events = _context.Events
+                .Include(e => e.EventSpeakers)
+                .ThenInclude(e => e.Speaker)
+                .ToList();
+            return View(eventVM);
         }
-        public IActionResult EventDetails()
+        public IActionResult EventDetails(int? id)
         {
-            return View();
+            EventVM eventVM = new EventVM();
+            eventVM.Tags = _context.Tags.ToList();
+            eventVM.Speakers = _context.Speakers.ToList();
+            eventVM.Event = _context.Events
+                .Include(e => e.EventSpeakers)
+                .ThenInclude(e => e.Speaker)
+                .FirstOrDefault(p => p.Id == id);
+            return View(eventVM);
         }
         public IActionResult Teacher()
         {
