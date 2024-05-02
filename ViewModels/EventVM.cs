@@ -6,9 +6,13 @@ namespace EduHome.ViewModels
     public class EventVM
     {
         public IEnumerable<Event> Events { get; set; }
+      
         public Event Event { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
         public ContactVM ContactVM { get; set; }
+        public IEnumerable<Blog> Blogs { get; set; }
         public IEnumerable<Speaker> Speakers { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+
     }
 }
