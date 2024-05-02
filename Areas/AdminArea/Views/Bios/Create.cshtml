@@ -1,0 +1,40 @@
+﻿
+@model BiosCreateVM
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"> Bio Create Form</h4>
+                    <p class="card-description">
+                        <a class="btn btn-outline-dark" asp-action="index">Go Back  </a>
+                    </p>
+                    <form enctype="multipart/form-data" class="forms-sample" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Key</label>
+                            <input asp-for="Key" class="form-control" placeholder="Key">
+                            <span asp-validation-for="Key" style="color:darkred"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Value</label>
+                            <textarea asp-for="Value" cols="23" rows="9"></textarea>
+                            <span asp-validation-for="Value" style="color:darkred"></span>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+
+    @*@await Html.PartialAsync("_ValidationPartial");*@
+    <partial name="_ValidationPartial"></partial>
+
+}
+
