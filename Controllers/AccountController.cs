@@ -99,5 +99,48 @@ namespace EduHome.Controllers
            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(string email)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(email);
+            if (user is null)
+            {
+                ModelState.AddModelError("Email", "Email movcud deyil");
+                return View();
+            }
+
+            //send email part
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var link = Url.Action(nameof(ResetPassword), "Account", new { token, email = user.Email },
+                Request.Scheme, Request.Host.ToString());
+            string body = $"<a href={link}>Please click here to reset password</a>";
+            _emailService.SendEmail(user.Email, link, "Forget Password for EduHome", "Reset Password", body);
+
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> ResetPassword(string email, string token)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            bool result = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", token);
+            if (!result)
+            {
+                return Content("token expired");
+            }
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string email, string token, ResetPasswordVM resetPasswordVM)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(email);
+            if (!ModelState.IsValid)
+                return View();
+            await _userManager.ResetPasswordAsync(user, token, resetPasswordVM.Password);
+            await _userManager.UpdateSecurityStampAsync(user);
+            return Json(new { message = "password ok" });
+        }
     }
 }
