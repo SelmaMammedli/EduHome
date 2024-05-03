@@ -1,4 +1,5 @@
-﻿using EduHome.Models;
+﻿using EduHome.Enums;
+using EduHome.Models;
 using EduHome.Services.Interfaces;
 using EduHome.ViewModels.UserVM;
 using Microsoft.AspNetCore.Identity;
@@ -11,13 +12,15 @@ namespace EduHome.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailService _emailService;
 
-        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager, IEmailService emailService)
+        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager, IEmailService emailService, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
+            _roleManager = roleManager;
         }
 
         public IActionResult Register()
@@ -33,7 +36,7 @@ namespace EduHome.Controllers
             user.FullName = registerVM.FullName;
             user.Email = registerVM.Email;
             user.UserName = registerVM.UserName;
-
+            user.IsActive = true;
             IdentityResult result = await _userManager.CreateAsync(user, registerVM.Password);
             if (!result.Succeeded)
             {
@@ -44,6 +47,7 @@ namespace EduHome.Controllers
                 return View(registerVM);
 
             }
+            await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
             //email confirmation
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var link = Url.Action(nameof(VerifyEmail), "Account", new { token, email = user.Email },
@@ -85,10 +89,24 @@ namespace EduHome.Controllers
                 }
             }
             SignInResult result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, loginVM.RememberMe, true);
-           
+            if (result.IsLockedOut)
+            {
+                ModelState.AddModelError("", "Blocked!");
+                return View(loginVM);
+            }
+            if (!user.EmailConfirmed)
+            {
+                ModelState.AddModelError("", "Emaili verify et...!");
+                return View(loginVM);
+            }
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "Email or UserName or Password invalid!");
+                return View(loginVM);
+            }
+            if (!user.IsActive)
+            {
+                ModelState.AddModelError("", "Your account is blocked!");
                 return View(loginVM);
             }
 
@@ -141,6 +159,27 @@ namespace EduHome.Controllers
             await _userManager.ResetPasswordAsync(user, token, resetPasswordVM.Password);
             await _userManager.UpdateSecurityStampAsync(user);
             return Json(new { message = "password ok" });
+        }
+        public async Task<IActionResult> CreateRole()
+        {
+            foreach (var role in Enum.GetValues(typeof(Roles)))
+            {
+                await _roleManager.CreateAsync(new() { Name = role.ToString() });
+            }
+            //if (!await _roleManager.RoleExistsAsync("Admin"))
+            //{
+            //    await _roleManager.CreateAsync(new() { Name = "Admin" });
+            //}
+            //if(!await _roleManager.RoleExistsAsync("Member"))
+            //{
+            //    await _roleManager.CreateAsync(new() { Name = "Member" });
+            //}
+            //if(!await _roleManager.RoleExistsAsync("SuperAdmin"))
+            //{
+            //    await _roleManager.CreateAsync(new() { Name = "SuperAdmin" });
+            //}
+
+            return Content("Roles added");
         }
     }
 }

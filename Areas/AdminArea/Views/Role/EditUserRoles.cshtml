@@ -1,0 +1,49 @@
+﻿@using EduHome.Areas.AdminArea.Views.ViewModels.Role;
+@model ChangeRoleVM
+<hr />
+<div class="container ">
+    <div class="raw">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                User FullName: <b style="color red">@Model.User.FullName</b><hr />
+                User UserName: <i>@Model.User.UserName</i><hr />
+                User Email: <i>@Model.User.Email</i><hr />
+             
+                <form method="post">
+                    <p>User Roles:</p>
+                       @foreach (var role in Model.Roles)
+                    {
+                        if (Model.UserRoles.Contains(role.Name))
+                        {
+                            <input name="newRoles" type="checkbox" checked value="@role.Name" />
+
+                            @role.Name
+
+                            <br />
+                        }
+                        else
+                        {
+                            <input name="newRoles" type="checkbox" value="@role.Name" />
+
+                            @role.Name
+
+                            <br />
+                        }
+
+                   
+                    }
+                    <button type="submit">Change</button><br /><hr />
+
+                   
+                </form>
+
+                <p class="card-description">
+                    <a class="btn btn-outline-dark" asp-controller="user" asp-action="index">Go Back  </a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
