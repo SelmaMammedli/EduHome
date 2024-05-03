@@ -101,7 +101,7 @@
                         <ul>
                             @foreach(var item in Model.Categories)
                             {
-                                <li>@item.Title</li>
+                                <li><a asp-action="courses">@item.Title</a></li>
                             }
                         </ul>
                     </div>
