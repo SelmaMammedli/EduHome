@@ -159,7 +159,19 @@ namespace EduHome.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+        public IActionResult Search(string input)
+        {
+            var course = _context.Courses
+                //.Where(p => p.Name.ToLower() == input.ToLower())
+                // .Where(p => p.Name.Equals(input,StringComparison.OrdinalIgnoreCase))
+                .Include(p => p.Category)
+                .Where(p => p.Category.Title.Contains(input))
+                .OrderByDescending(p => p.Id)
+                .Take(5)
+                .ToList();
+            return PartialView("_SearchPartial", course);
+        }
+
 
     }
 }

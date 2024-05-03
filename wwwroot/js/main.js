@@ -1,6 +1,28 @@
 (function ($) {
 "use strict";  
-    
+    //Search 
+    let input = $("#input-search");
+    $(document).on("keyup", "#input-search", function () {
+        $("#searchList li").slice(1).remove();
+        let value = $(this).val().trim();
+        if (value.length > 0) {
+            $.ajax({
+                method: "get",
+                url: "/home/search?input=" + value,
+                success: function (datas) {
+                    $("#searchList").append(datas)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        }
+
+    })
+
+
+
+
 /*------------------------------------
 	Sticky Menu 
 --------------------------------------*/

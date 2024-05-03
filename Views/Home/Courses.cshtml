@@ -26,8 +26,17 @@
                     <h3>search courses</h3>
                 </div>
                 <div class="course-form">
-                    <form id="search" action="#">
-                        <input type="search" placeholder="Search..." name="search" />
+                    <form id="searchList" asp-action="search">
+                        <input id="input-search" type="search" placeholder="Search..." name="search" />
+                       @* <ul id="searchList" class="list-unstyled py-3">
+                            <li class="d-flex px-3">
+                                <input id="input-search" type="text" placeholder="Search">
+                                <i class="fas fa-search my-auto" id="search"></i>
+                            </li>
+
+
+
+                        </ul>*@
                         <button type="submit">search</button>
                     </form>
                 </div>
