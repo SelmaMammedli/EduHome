@@ -54,11 +54,11 @@
                     <div class="single-widget">
                         <h3>information</h3>
                         <ul>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="About").Value">About</a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Blog").Value">Blog</a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Event").Value">Event </a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Courses").Value">Courses</a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Teacher").Value">Teacher</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="About").Value">About</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Blog").Value">Blog</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Event").Value">Event </a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Courses").Value">Courses</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Teacher").Value">Teacher</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,11 +66,11 @@
                     <div class="single-widget">
                         <h3>useful links</h3>
                         <ul>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="About").Value">About</a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Blog").Value">Blog</a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Event").Value">Event </a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Courses").Value">Courses</a></li>
-                            <li><a asp-action="@Model.FirstOrDefault(d=>d.Key=="Teacher").Value">Teacher</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="About").Value">About</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Blog").Value">Blog</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Event").Value">Event </a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Courses").Value">Courses</a></li>
+                            <li><a asp-controller="home" asp-action="@Model.FirstOrDefault(d=>d.Key=="Teacher").Value">Teacher</a></li>
                         </ul>
                     </div>
                 </div>

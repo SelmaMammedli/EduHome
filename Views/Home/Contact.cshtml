@@ -30,36 +30,21 @@
         <div class="row">
             <div class="col-md-5 col-sm-5 col-xs-12">
                 <div class="contact-contents text-center">
+                    @foreach(var locations in Model.Locations)
+                    {
+                        
                     <div class="single-contact mb-65">
                         <div class="contact-icon">
-                            <img src="~/img/contact/contact1.png" alt="contact">
+                            <img src="~/img/contact/@locations.Icon" alt="contact">
                         </div>
                         <div class="contact-add">
-                            <h3>address</h3>
-                            <p>135, First Lane, City Street</p>
-                            <p>New Yourk City, USA</p>
+                            <h3>@locations.Title</h3>
+                            <p>@locations.Description</p>
+                            
                         </div>
                     </div>
-                    <div class="single-contact mb-65">
-                        <div class="contact-icon">
-                            <img src="~/img/contact/contact2.png" alt="contact">
-                        </div>
-                        <div class="contact-add">
-                            <h3>address</h3>
-                            <p>135, First Lane, City Street</p>
-                            <p>New Yourk City, USA</p>
-                        </div>
-                    </div>
-                    <div class="single-contact">
-                        <div class="contact-icon">
-                            <img src="~/img/contact/contact3.png" alt="contact">
-                        </div>
-                        <div class="contact-add">
-                            <h3>address</h3>
-                            <p>135, First Lane, City Street</p>
-                            <p>New Yourk City, USA</p>
-                        </div>
-                    </div>
+                    }
+                    
                 </div>
             </div>
             <div class="col-md-7 col-sm-7 col-xs-12">

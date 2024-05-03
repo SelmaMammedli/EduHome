@@ -145,7 +145,9 @@ namespace EduHome.Controllers
         }
         public IActionResult Contact()
         {
-            return View();
+            ContactVM contactVM = new ContactVM();
+            contactVM.Locations=_context.Locations.Take(3).ToList();
+            return View(contactVM);
         }
         [HttpPost]
         public IActionResult Contact(ContactVM contactVM)
