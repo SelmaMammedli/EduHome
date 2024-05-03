@@ -49,6 +49,7 @@
                         <div class="course-content">
                             <h3><a asp-action="CoursesDetails" asp-route-id="@item.Id">@item.Category.Title</a></h3>
                             <p>@item.ShortAC</p>
+                                    <a class="default-btn" asp-controller="basket" asp-action="AddBasket" asp-route-id="@item.Id" ><span class="text-black-50">Add to cart</span></a>
                             <a class="default-btn" asp-action="CoursesDetails" asp-route-id="@item.Id">read more</a>
                         </div>
                     </div>

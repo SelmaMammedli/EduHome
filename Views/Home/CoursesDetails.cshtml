@@ -53,6 +53,7 @@
                                 
                             </ul>
                             <h3 class="red">course fee $@Model.Courses.Price</h3>
+                            <a class="default-btn" asp-controller="basket" asp-action="AddBasket" asp-route-id="@Model.Courses.Id" ><span class="text-black-50">Add to cart</span></a>
                         </div>
                     </div>
                     <div class="reply-area">

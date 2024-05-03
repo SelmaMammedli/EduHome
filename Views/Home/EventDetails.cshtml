@@ -23,7 +23,7 @@
             <div class="col-md-8">
                 <div class="event-details">
                     <div class="event-details-img">
-                        <img src="~/img/event/@Model.Event.ImageUrl" alt="event-details">
+                        <img width="718" height="333.52" src="~/img/event/@Model.Event.ImageUrl" alt="event-details">
                         <div class="event-date">
                             <h3>@Model.Event.StartDate.ToString(" dd") <span>@Model.Event.StartDate.ToString("MMMM")</span></h3>
                         </div>
@@ -35,14 +35,14 @@
                             <li><span>venue : </span>@Model.Event.Venue</li>
                         </ul>
                         <p>@Model.Event.Description</p>
-                        <div class="speakers-area fix">
+                        <div  class="speakers-area fix">
                             <h4>speakers</h4>
                             @foreach(var speaker in Model.Event.EventSpeakers)
                             {
                                 
                             <div class="single-speaker">
                                 <div class="speaker-img">
-                                    <img src="~/img/teacher/@speaker.Speaker.ImageUrl" alt="speaker">
+                                    <img width="96" height="88" src="~/img/teacher/@speaker.Speaker.ImageUrl" alt="speaker">
                                 </div>
                                 <div class="speaker-name">
                                     <h5>@speaker.Speaker.FullName</h5>
