@@ -1,8 +1,14 @@
-﻿using EduHome.Areas.AdminArea.Views.ViewModels.Role;
+﻿using EduHome.Areas.AdminArea.Views.ViewModels.Event;
+using EduHome.Areas.AdminArea.Views.ViewModels.Role;
 using EduHome.DAL;
+using EduHome.Enums;
+using EduHome.Extensions;
+using EduHome.Helper;
 using EduHome.Models;
+using EduHome.ViewModels.UserVM;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace EduHome.Areas.AdminArea.Controllers
@@ -31,6 +37,63 @@ namespace EduHome.Areas.AdminArea.Controllers
                .ToList();
             return View(users);
 
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Create(UserCreateVM registerVM)
+        {
+            if (!ModelState.IsValid) return View();
+            AppUser user = new();
+            user.FullName = registerVM.FullName;
+            user.Email = registerVM.Email;
+            user.UserName = registerVM.UserName;
+            user.IsActive = true;
+            IdentityResult result = await _userManager.CreateAsync(user, registerVM.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(registerVM);
+
+            }
+            await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
+            //email confirmation
+            
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Update(string?id)
+        {
+
+            if (id == null) return NotFound();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+            UserUpdateVM userUpdateVM = new UserUpdateVM();
+            userUpdateVM.FullName = user.FullName;
+            userUpdateVM.UserName = user.UserName;
+            userUpdateVM.Email = user.Email;
+          
+          
+            return View(userUpdateVM);
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Update(string? id, UserUpdateVM userUpdateVM)
+        {
+            if (id == null) return NotFound();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+            user.FullName = userUpdateVM.FullName;
+            user.UserName = userUpdateVM.UserName;
+            user.Email = userUpdateVM.Email;
+        
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
         public IActionResult DeletedUser(string search)
         {
