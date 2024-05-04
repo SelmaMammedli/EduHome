@@ -99,14 +99,14 @@ namespace EduHome.Areas.AdminArea.Controllers
             eventUpdateVM.Title = existEvent.Title;
             eventUpdateVM.Description=existEvent.Description;
             eventUpdateVM.ImageUrl= existEvent.ImageUrl;
-           // eventUpdateVM.SpeakerIds = existEvent.SpeakerIds;
-            foreach (var speakerId in existEvent.SpeakerIds)
-            {
-                EventSpeaker eventSpeaker = new();
-                existEvent.Id = eventSpeaker.EventId;
-                eventSpeaker.SpeakerId = speakerId;
+            eventUpdateVM.SpeakerIds = existEvent.EventSpeakers.Select(s=>s.SpeakerId).ToList();
+            //foreach (var speakerId in existEvent.SpeakerIds)
+            //{
+            //    EventSpeaker eventSpeaker = new();
+            //    existEvent.Id = eventSpeaker.EventId;
+            //    eventSpeaker.SpeakerId = speakerId;
                 
-            }
+            //}
             return View(eventUpdateVM);
         }
         [HttpPost]
@@ -139,21 +139,27 @@ namespace EduHome.Areas.AdminArea.Controllers
                     existEvent.ImageUrl = fileName;
                 
             };
-            List<EventSpeaker> list = new();
-            foreach (var speakerId in existEvent.SpeakerIds)
+            existEvent.StartDate = eventUpdateVM.StartDate;
+            existEvent.EndDate = eventUpdateVM.EndDate;
+            existEvent.Title = eventUpdateVM.Title;
+            existEvent.Description = eventUpdateVM.Description;
+            existEvent.Venue = eventUpdateVM.Venue;
+            List<int> createList = eventUpdateVM.SpeakerIds.Where(e => !existEvent.EventSpeakers.Exists(es => es.Id == e)).ToList();
+            foreach (int speakerId in createList)
             {
-                EventSpeaker eventSpeaker = new();
-                 existEvent.Id=eventSpeaker.EventId;
-                eventSpeaker.SpeakerId = speakerId;
-                list.Add(eventSpeaker);
+                
+                EventSpeaker eventSpeaker = new EventSpeaker
+                {
+                    EventId = existEvent.Id,
+                    SpeakerId = speakerId
+                };
+                existEvent.EventSpeakers.Add(eventSpeaker);
             }
+            List<EventSpeaker> removeList = existEvent.EventSpeakers.Where(e=>!eventUpdateVM.SpeakerIds.Contains(e.SpeakerId)).ToList();
 
-            existEvent.StartDate=eventUpdateVM.StartDate;
-            existEvent.EndDate=eventUpdateVM.EndDate;
-            existEvent.Title=eventUpdateVM.Title;
-            existEvent.Description=eventUpdateVM.Description;
-            existEvent.Venue=eventUpdateVM.Venue;
-            list = eventUpdateVM.EventSpeakers;
+            _context.EventsSpeaker.RemoveRange(removeList);
+           
+           // list = eventUpdateVM.EventSpeakers;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
