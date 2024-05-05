@@ -87,15 +87,7 @@ namespace EduHome.Controllers
             blogVM.Categories = _context.Categories.ToList();
             blogVM.Tags = _context.Tags.ToList();
             
-            //var blogVM=_context.Blogs.FirstOrDefault(x => x.Id == id);
-            //var blogs=_context.Blogs.AsNoTracking().ToList();
-            //if (id == null) return BadRequest();
-            //if (blogs.Exists(p => p.Id == id))
-            //{
-            //    return View(blogs.Find(p => p.Id == id));
-            //}
-
-            // return BadRequest();
+           
             return View(blogVM);
             
 
