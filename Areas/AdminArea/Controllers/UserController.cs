@@ -95,17 +95,7 @@ namespace EduHome.Areas.AdminArea.Controllers
             await _userManager.UpdateAsync(user);
             return RedirectToAction("Index");
         }
-        //public async Task<IActionResult> DeletedUser(string id)
-        //{
-
-
-        //    var users = _userManager.Users
-        //        .AsNoTracking()
-        //        .ToList();
-
-        //    return View(users);
-
-        //}
+       
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null) return NotFound();
