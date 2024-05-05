@@ -166,18 +166,7 @@ namespace EduHome.Controllers
             {
                 await _roleManager.CreateAsync(new() { Name = role.ToString() });
             }
-            //if (!await _roleManager.RoleExistsAsync("Admin"))
-            //{
-            //    await _roleManager.CreateAsync(new() { Name = "Admin" });
-            //}
-            //if(!await _roleManager.RoleExistsAsync("Member"))
-            //{
-            //    await _roleManager.CreateAsync(new() { Name = "Member" });
-            //}
-            //if(!await _roleManager.RoleExistsAsync("SuperAdmin"))
-            //{
-            //    await _roleManager.CreateAsync(new() { Name = "SuperAdmin" });
-            //}
+        
 
             return Content("Roles added");
         }
