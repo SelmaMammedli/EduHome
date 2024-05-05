@@ -33,12 +33,18 @@ namespace EduHome.Controllers
             homeVm.WhyYouChoose = _context.WhyYouChooses.FirstOrDefault();
             return View(homeVm);
         }
-        public IActionResult Courses()
+        public IActionResult Courses(string search)
         {
             HomeVM homeVM = new HomeVM();
-            homeVM.Courses= _context.Courses
+            homeVM.Courses=search is null?
+                _context.Courses
                 .Include(c=>c.Category)
                 .Include(c => c.Language)
+                .ToList():
+                _context.Courses
+                .Include(c => c.Category)
+                .AsEnumerable()
+                .Where(p => p.Category.Title.Contains(search,StringComparison.OrdinalIgnoreCase))
                 .ToList();
             return View(homeVM);
         }

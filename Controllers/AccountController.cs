@@ -47,7 +47,7 @@ namespace EduHome.Controllers
                 return View(registerVM);
 
             }
-            await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
+            await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
             //email confirmation
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var link = Url.Action(nameof(VerifyEmail), "Account", new { token, email = user.Email },

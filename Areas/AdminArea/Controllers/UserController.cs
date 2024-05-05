@@ -91,23 +91,30 @@ namespace EduHome.Areas.AdminArea.Controllers
             user.FullName = userUpdateVM.FullName;
             user.UserName = userUpdateVM.UserName;
             user.Email = userUpdateVM.Email;
-        
-            _context.SaveChanges();
+
+            await _userManager.UpdateAsync(user);
             return RedirectToAction("Index");
         }
-        public IActionResult DeletedUser(string search)
+        //public async Task<IActionResult> DeletedUser(string id)
+        //{
+
+
+        //    var users = _userManager.Users
+        //        .AsNoTracking()
+        //        .ToList();
+
+        //    return View(users);
+
+        //}
+        public async Task<IActionResult> Delete(string id)
         {
+            if (id == null) return NotFound();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
 
+            await _userManager.DeleteAsync(user);
+            return RedirectToAction("Index");
 
-            var users = search is null ? _userManager.Users
-                .Where(u => !u.IsActive)
-               .AsNoTracking()
-               .ToList() :
-               _userManager.Users
-               .AsNoTracking()
-               .Where(u => u.UserName.ToLower().Contains(search.ToLower()) && !u.IsActive)
-               .ToList();
-            return View(users);
 
         }
         public async Task<IActionResult> Detail(string id)
